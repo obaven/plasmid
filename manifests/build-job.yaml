@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: rotator-builder
+  name: plasmidr-builder
   namespace: vaultwarden-prod
 spec:
   # backoffLimit: 0 # Fail fast if needed, but let's stick to default
@@ -42,7 +42,7 @@ spec:
         - -c
         - |
           ulimit -n 65536
-          /kaniko/executor --context=dir:///workspace --dockerfile=Dockerfile --destination=harbor.obaven.org/library/rotato:latest --snapshotMode=time
+          /kaniko/executor --context=dir:///workspace --dockerfile=Dockerfile --destination=harbor.obaven.org/library/plasmid:latest --snapshotMode=time
         args: []
         resources:
           requests:
@@ -59,11 +59,11 @@ spec:
       volumes:
       - name: workspace
         hostPath:
-          path: /mnt/postgres-data-0/rotator-build-workspace-rust-nightly-v6
+          path: /mnt/postgres-data-0/plasmidr-build-workspace-rust-nightly-v6
           type: DirectoryOrCreate
       - name: ssh-key
         secret:
-          secretName: rotator-git-ssh-key
+          secretName: plasmidr-git-ssh-key
           items:
           - key: private_key
             path: ssh-privatekey

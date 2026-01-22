@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: vaultwarden-rotator
+  name: vaultwarden-plasmidr
   namespace: vaultwarden-prod
 spec:
   schedule: "0 3 * * *" # Daily at 3 AM
@@ -9,10 +9,10 @@ spec:
     spec:
       template:
         spec:
-          serviceAccountName: vaultwarden-rotator
+          serviceAccountName: vaultwarden-plasmidr
           containers:
-          - name: rotator
-            image: vaultwarden-rotator:latest # REPLACE WITH YOUR REGISTRY IMAGE
+          - name: plasmidr
+            image: vaultwarden-plasmidr:latest # REPLACE WITH YOUR REGISTRY IMAGE
             imagePullPolicy: IfNotPresent
             env:
             - name: GIT_REPO_URL
@@ -51,7 +51,7 @@ spec:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: vaultwarden-rotator
+  name: vaultwarden-plasmidr
   namespace: vaultwarden-prod
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -82,10 +82,10 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: vaultwarden-rotator-read-secrets
+  name: vaultwarden-plasmidr-read-secrets
 subjects:
 - kind: ServiceAccount
-  name: vaultwarden-rotator
+  name: vaultwarden-plasmidr
   namespace: vaultwarden-prod
 roleRef:
   kind: ClusterRole
@@ -95,10 +95,10 @@ roleRef:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: vaultwarden-rotator-exec
+  name: vaultwarden-plasmidr-exec
 subjects:
 - kind: ServiceAccount
-  name: vaultwarden-rotator
+  name: vaultwarden-plasmidr
   namespace: vaultwarden-prod
 roleRef:
   kind: ClusterRole

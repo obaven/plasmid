@@ -1,5 +1,5 @@
 use anyhow::{Result, anyhow};
-use rotato::models::{RotationManifest, SecretDefinition, VaultwardenTarget, KubernetesTarget, KeyDefinition, KeyType};
+use plasmid::models::{RotationManifest, SecretDefinition, VaultwardenTarget, KubernetesTarget, KeyDefinition, KeyType};
 
 
 #[tokio::test]
@@ -12,13 +12,13 @@ async fn test_real_rotation_flow() -> Result<()> {
         // 1. Fetch Admin Token from K8s (The "New Logic")
         // usage of: cargo make get-password logic programmatically
         println!("Fetching ADMIN_TOKEN from vaultwarden-env...");
-        let admin_token = rotato::infra::k8s::get_k8s_secret("vaultwarden-env", "vaultwarden-prod", "ADMIN_TOKEN")
+        let admin_token = plasmid::infra::k8s::get_k8s_secret("vaultwarden-env", "vaultwarden-prod", "ADMIN_TOKEN")
             .map_err(|e| anyhow!("Failed to fetch ADMIN_TOKEN: {}", e))?;
             
         println!("Successfully retrieved Admin Token (len={})", admin_token.len());
 
         // 2. Validate Admin Access (Check Users)
-        let admin_client = rotato::admin::AdminClient::new(
+        let admin_client = plasmid::admin::AdminClient::new(
             "https://vaultwarden.obaven.org".to_string(), 
             admin_token
         );
@@ -109,7 +109,7 @@ async fn test_real_rotation_flow() -> Result<()> {
         let session_val = std::env::var("BW_SESSION").ok();
         
         // Note: flows::get_org_key allows password override.
-        let (client, org_id, org_key, user_key) = rotato::flows::get_org_key(
+        let (client, org_id, org_key, user_key) = plasmid::flows::get_org_key(
             "https://vaultwarden.obaven.org",
             &email_ref,
             session_val,
@@ -123,7 +123,7 @@ async fn test_real_rotation_flow() -> Result<()> {
          // Check if "Test/E2E Test" target exists is part of rotation logic.
         
         // 5. Define Test Manifest & Secret
-        let test_secret_name = format!("e2e-{}", rotato::infra::random::get_random_string(6));
+        let test_secret_name = format!("e2e-{}", plasmid::infra::random::get_random_string(6));
         
         let manifest = RotationManifest {
             version: "v1".into(),
@@ -159,9 +159,9 @@ async fn test_real_rotation_flow() -> Result<()> {
         
         // 6. Setup: Create encrypted item
         println!("Creating initial item '{}'...", test_secret_name);
-        let enc_name = rotato::crypto::encrypt_aes256_cbc_hmac(test_secret_name.as_bytes(), &org_key)?;
-        let enc_user = rotato::crypto::encrypt_aes256_cbc_hmac(b"initial", &org_key)?;
-        let enc_pass = rotato::crypto::encrypt_aes256_cbc_hmac(b"initial-password", &org_key)?;
+        let enc_name = plasmid::crypto::encrypt_aes256_cbc_hmac(test_secret_name.as_bytes(), &org_key)?;
+        let enc_user = plasmid::crypto::encrypt_aes256_cbc_hmac(b"initial", &org_key)?;
+        let enc_pass = plasmid::crypto::encrypt_aes256_cbc_hmac(b"initial-password", &org_key)?;
         
         let initial_cipher_id = client.create_cipher(&serde_json::json!({
             "type": 1,
@@ -177,7 +177,7 @@ async fn test_real_rotation_flow() -> Result<()> {
         println!("Created Item ID: {}", to_rotate_id);
 
         // 7. Run Rotation Logic
-        let args = rotato::commands::rotate::RotateArgs {
+        let args = plasmid::commands::rotate::RotateArgs {
             config: "".into(),
             scan: false,
             dry_run: false,
@@ -189,17 +189,17 @@ async fn test_real_rotation_flow() -> Result<()> {
         };
         
         // We need git root for "kubeseal" context
-        let git_root = rotato::commands::check::find_monorepo_root()?.to_string_lossy().to_string();
+        let git_root = plasmid::commands::check::find_monorepo_root()?.to_string_lossy().to_string();
         
         // Run!
-        rotato::commands::rotate::process::process_secret(&client, manifest.secrets[0].clone(), &git_root, &org_key, &user_key, &org_id, &args).await?;
+        plasmid::commands::rotate::process::process_secret(&client, manifest.secrets[0].clone(), &git_root, &org_key, &user_key, &org_id, &args).await?;
         
         // 8. Verification
         // A. Verify item in Vaultwarden changed password
         println!("Verifying Item Update...");
         let updated_cipher = client.get_item(&to_rotate_id).await?;
         let updated_pass_enc = updated_cipher["login"]["password"].as_str().unwrap();
-        let updated_pass_bytes = rotato::crypto::decrypt_aes256_cbc_hmac(
+        let updated_pass_bytes = plasmid::crypto::decrypt_aes256_cbc_hmac(
              if updated_pass_enc.starts_with("2.") { &updated_pass_enc[2..] } else { updated_pass_enc }, 
             &org_key
         )?;

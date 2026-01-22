@@ -36,7 +36,7 @@ args = ["run", "--", "scaffold", "${@}"]
 [tasks.docker-build]
 description = "Build the Docker image"
 command = "docker"
-args = ["build", "-t", "rotato:latest", "."]
+args = ["build", "-t", "plasmid:latest", "."]
 
 [tasks.deploy]
 description = "Apply Kubernetes manifests"

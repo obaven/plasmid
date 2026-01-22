@@ -1,7 +1,11 @@
 [package]
-name = "rotato"
+name = "plasmid"
 version = "0.1.0"
 edition = "2021"
+
+[[bin]]
+name = "plasmid"
+path = "src/main.rs"
 
 [dependencies]
 anyhow = "1.0"

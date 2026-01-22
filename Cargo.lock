@@ -1193,6 +1193,38 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7edddbd0b52d732b21ad9a5fab5c704c14cd949e5e9a1ec5929a24fded1b904c"
 
 [[package]]
+name = "plasmid"
+version = "0.1.0"
+dependencies = [
+ "aes",
+ "anyhow",
+ "argon2",
+ "backoff",
+ "base64",
+ "cbc",
+ "chrono",
+ "clap",
+ "colored",
+ "futures",
+ "hex",
+ "hkdf",
+ "hmac",
+ "pbkdf2",
+ "rand",
+ "reqwest",
+ "rpassword",
+ "rsa",
+ "serde",
+ "serde_json",
+ "serde_yaml",
+ "sha1",
+ "sha2",
+ "tempfile",
+ "tokio",
+ "walkdir",
+]
+
+[[package]]
 name = "potential_utf"
 version = "0.1.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1335,38 +1367,6 @@ dependencies = [
  "wasm-bindgen-futures",
  "web-sys",
  "winreg",
-]
-
-[[package]]
-name = "rotato"
-version = "0.1.0"
-dependencies = [
- "aes",
- "anyhow",
- "argon2",
- "backoff",
- "base64",
- "cbc",
- "chrono",
- "clap",
- "colored",
- "futures",
- "hex",
- "hkdf",
- "hmac",
- "pbkdf2",
- "rand",
- "reqwest",
- "rpassword",
- "rsa",
- "serde",
- "serde_json",
- "serde_yaml",
- "sha1",
- "sha2",
- "tempfile",
- "tokio",
- "walkdir",
 ]
 
 [[package]]

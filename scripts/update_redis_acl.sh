@@ -11,7 +11,7 @@ if [ -z "$REDIS_SERVICE" ] || [ -z "$REDIS_NAMESPACE" ] || [ -z "$REDIS_ADMIN_SE
 fi
 
 if [ -z "$ROTATOR_KEY_USERNAME" ] || [ -z "$ROTATOR_KEY_PASSWORD" ]; then
-    echo "ERROR: Missing ROTATOR_KEY_* env vars (not running via rotato?)"
+    echo "ERROR: Missing ROTATOR_KEY_* env vars (not running via plasmid?)"
     exit 1
 fi
 
@@ -40,7 +40,7 @@ echo "[update_redis_acl] Updating ACL for user '$USERNAME'..."
 # Use a temporary pod? Or exec into existing?
 # Exec into existing is easier if we can find one.
 # Or just run a throwaway pod with redis-cli.
-# Assuming we have network access from where rotator runs (it runs locally or in CI runner).
+# Assuming we have network access from where plasmidr runs (it runs locally or in CI runner).
 # If local, we can port-forward? 
 # IF running in cluster (Argo Workflows), we can access service directly.
 # The user prompt implies running locally for now ("gitops" folder), but design should be robust.

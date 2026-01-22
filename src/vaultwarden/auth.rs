@@ -27,8 +27,8 @@ impl VaultwardenClient {
             ("scope", "api offline_access"),
             ("client_id", "web"),
             ("device_type", "2"), // 2 = Browser usually
-            ("device_identifier", "rotator-helper"), 
-            ("device_name", "rotator-helper"),
+            ("device_identifier", "plasmidr-helper"), 
+            ("device_name", "plasmidr-helper"),
         ];
 
         let resp = self.client.post(&url)

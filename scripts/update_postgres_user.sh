@@ -11,7 +11,7 @@ if [ -z "$PG_NAMESPACE" ] || [ -z "$PG_ADMIN_SECRET" ]; then
 fi
 
 if [ -z "$ROTATOR_KEY_USERNAME" ] || [ -z "$ROTATOR_KEY_PASSWORD" ]; then
-    echo "ERROR: Missing ROTATOR_KEY_* env vars (not running via rotato?)"
+    echo "ERROR: Missing ROTATOR_KEY_* env vars (not running via plasmid?)"
     exit 1
 fi
 

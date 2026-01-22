@@ -11,7 +11,7 @@ This runbook documents the Standard Operating Procedures (SOPs) for managing the
     cd apps/my-domain/my-app
     ```
 2.  **Scaffold the Configuration**:
-    Run the scaffolding tool (from the `rotator_helper` directory or using the binary):
+    Run the scaffolding tool (from the `plasmidr_helper` directory or using the binary):
     ```bash
     # Assuming valid credentials in env
     cargo make scaffold -- --app my-app --env prod
@@ -53,7 +53,7 @@ This runbook documents the Standard Operating Procedures (SOPs) for managing the
 ### Trigger a Manual Job
 If you don't want to wait for the nightly schedule:
 ```bash
-kubectl create job --from=cronjob/vaultwarden-rotator manual-rotation-01 -n vaultwarden-prod
+kubectl create job --from=cronjob/vaultwarden-plasmidr manual-rotation-01 -n vaultwarden-prod
 ```
 
 ### View Logs
@@ -77,9 +77,9 @@ kubectl logs -f <pod-name> -n vaultwarden-prod
 
 ### Incident: "ArgoCD is Out of Sync"
 1.  **Check Git History**:
-    Did the rotator commit a change that ArgoCD is rejecting?
+    Did the plasmidr commit a change that ArgoCD is rejecting?
 2.  **Check SealedSecret Validity**:
-    Ensure the `kubeseal` certificate used by the rotator matches the controller in the cluster.
+    Ensure the `kubeseal` certificate used by the plasmidr matches the controller in the cluster.
     *   *Fix*: Re-fetch the public cert: `kubeseal --fetch-cert ...`
 
 ## 📦 Reference: Key Types

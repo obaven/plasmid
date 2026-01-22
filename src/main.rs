@@ -1,4 +1,4 @@
-use rotato::commands;
+use plasmid::commands;
 
 use clap::{Parser, Subcommand};
 

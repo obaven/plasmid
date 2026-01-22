@@ -36,7 +36,7 @@ RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/s
     && install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
 WORKDIR /app
-COPY --from=builder /usr/src/app/target/release/rotato /usr/local/bin/rotato
+COPY --from=builder /usr/src/app/target/release/plasmid /usr/local/bin/plasmid
 
 # Entrypoint script to handle git cloning? 
 # Or just run the binary and expect repo to be mounted or cloned by init container?

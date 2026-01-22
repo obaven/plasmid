@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: rotator-helper
+  name: plasmidr-helper
   namespace: vaultwarden-prod
 spec:
   schedule: "0 3 * * *"
@@ -10,8 +10,8 @@ spec:
       template:
         spec:
           containers:
-          - name: rotator
-            image: harbor.obaven.org/library/rotato:latest
+          - name: plasmidr
+            image: harbor.obaven.org/library/plasmid:latest
             imagePullPolicy: Always
             env:
             - name: VAULTWARDEN_URL
@@ -43,7 +43,7 @@ spec:
           volumes:
           - name: ssh-key
             secret:
-              secretName: rotator-git-ssh-key
+              secretName: plasmidr-git-ssh-key
               items:
               - key: private_key
                 path: ssh-privatekey

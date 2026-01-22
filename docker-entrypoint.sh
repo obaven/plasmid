@@ -3,7 +3,7 @@ set -e
 
 # Configuration
 REPO_URL="${GIT_REPO_URL:-git@github.com:obaven/gitops.git}"
-GIT_EMAIL="${GIT_EMAIL:-rotator-bot@obaven.com}"
+GIT_EMAIL="${GIT_EMAIL:-plasmidr-bot@obaven.com}"
 GIT_NAME="${GIT_NAME:-Rotator Bot}"
 
 echo "Starting Rotator Bot..."
@@ -29,6 +29,6 @@ cd /app/repo
 
 # 4. Run Rotator
 echo "Running rotation..."
-rotato rotate --scan
+plasmid rotate --scan
 
 echo "Done."

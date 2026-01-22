@@ -30,10 +30,10 @@ Developers create a `rotation.yaml` in their app directory using the CLI:
 cargo make scaffold -- --app my-app --env prod
 ```
 This generates a config file defining which secrets to rotate and how.
-It also supports organizing secrets into **Folders** (e.g., "ArgoCD", "Harbor") by specifying a `folder` key in the config. The rotator will automatically create the folder if it doesn't exist.
+It also supports organizing secrets into **Folders** (e.g., "ArgoCD", "Harbor") by specifying a `folder` key in the config. The plasmidr will automatically create the folder if it doesn't exist.
 
 ### 2. Secret Rotation (The Loop)
-The rotator (running locally or in the CronJob):
+The plasmidr (running locally or in the CronJob):
 1.  **Scans**: Finds all `rotation.yaml` files in the repository.
 2.  **Authenticates**: Logs into Vaultwarden.
 3.  **Processes**: For each secret:
@@ -44,7 +44,7 @@ The rotator (running locally or in the CronJob):
 4.  **Commits**: Pushes the new SealedSecrets to Git.
 
 ### 3. Automation
-A Kubernetes CronJob runs the rotator nightly.
+A Kubernetes CronJob runs the plasmidr nightly.
 -   **Manifests**: Defined in `manifests.yaml`.
 -   **Docker**: Built via `Makefile.toml`.
 

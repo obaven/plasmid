@@ -1,6 +1,6 @@
 version: "0.1.0"
 secrets:
-- name: rotator-ssh-key
+- name: plasmidr-ssh-key
   env: null
   vaultwarden:
     cipherId: 255e0a40-4479-4989-a63a-9fc4673457f2
@@ -66,8 +66,8 @@ secrets:
     generator: null
   kubernetes:
     namespace: vaultwarden-prod
-    path: apps/cicd/github/sealed_secrets/sealed-rotator-ssh-key.yaml
-    secretName: rotator-git-ssh-key
+    path: apps/cicd/github/sealed_secrets/sealed-plasmidr-ssh-key.yaml
+    secretName: plasmidr-git-ssh-key
   sourceFiles: null
   namespace: null
   secretName: null

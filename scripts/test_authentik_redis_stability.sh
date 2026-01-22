@@ -43,7 +43,7 @@ rotate_and_verify() {
     log "Rotating Redis Credential using Rotator..."
     # Run rotation for the specific config that contains our secret.
     # Note: This rotates ALL secrets in that config.
-    cd /home/jdean/gitops/apps/security/vaultwarden/rotation/rotator_helper
+    cd /home/jdean/gitops/apps/security/vaultwarden/rotation/plasmidr_helper
     cargo run -- rotate --config /home/jdean/gitops/apps/security/authentik/rotation.yaml
     cd -
     # For this test script, we assume the hook is configured or we do it manually.
