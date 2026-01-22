@@ -3,17 +3,16 @@ use std::fs;
 use std::io::Write;
 use std::path::Path;
 use std::process::Command;
-use crate::models::SecretDefinition;
 
 pub fn generate_and_write_secret(
     target: &crate::models::KubernetesTarget,
     secret_data: &std::collections::HashMap<String, String>,
     git_root: &str,
     dry_run: bool,
-    debug: bool,
+    _debug: bool,
 ) -> Result<()> {
     let mut labels = std::collections::HashMap::new();
-    labels.insert("managed-by".to_string(), "rotator-helper".to_string());
+    labels.insert("managed-by".to_string(), "plasmidr-helper".to_string());
     
     if let Some(l) = &target.labels {
         labels.extend(l.clone());

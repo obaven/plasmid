@@ -26,7 +26,7 @@ pub async fn run(args: CreateItemsArgs) -> Result<()> {
 
     // Load secrets (Scan or Config)
     use walkdir::WalkDir;
-    use crate::models::{RotationManifest, SecretDefinition};
+    use crate::models::RotationManifest;
     use crate::commands::create_items::types::{SecretConfig, VaultwardenConfig}; // Local types
 
     let mut secrets: Vec<SecretConfig> = if args.scan {

@@ -1,6 +1,5 @@
 use anyhow::{anyhow, Result};
 use std::process::Command;
-use tempfile::NamedTempFile;
 
 pub fn generate_ssh_keypair() -> Result<(String, String)> {
     // secure temp dir

@@ -3,7 +3,7 @@ use std::fs;
 use std::path::Path;
 use serde_yaml::Mapping;
 use serde_yaml::Value;
-use crate::models::{AuthentikTarget, AuthentikMetadata}; // Updated imports
+use crate::models::AuthentikTarget;
 
 pub fn generate_blueprint(target: &AuthentikTarget, secret_value: &str) -> Result<()> {
     println!("Generating Authentik Blueprint at: {}", target.path);
@@ -48,6 +48,7 @@ mod tests {
     use super::*;
     use std::collections::HashMap;
     use tempfile::tempdir;
+    use crate::models::AuthentikMetadata;
 
     #[test]
     fn test_generate_blueprint() {
