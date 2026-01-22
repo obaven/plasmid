@@ -36,8 +36,10 @@ pub async fn run(args: RotateArgs) -> Result<()> {
     let (email, password_opt) = crate::flows::resolve_credentials()?;
     let session_key = std::env::var("BW_SESSION").ok();
     
+    let base_url = std::env::var("VAULTWARDEN_URL").unwrap_or_else(|_| "https://vaultwarden.obaven.org".to_string());
+    
     let (client, org_id, org_key, user_key) = crate::flows::get_org_key(
-        "https://vaultwarden.obaven.org",
+        &base_url,
         &email,
         session_key,
         password_opt,
