@@ -1,4 +1,4 @@
-digraph VaultwardenRotator {
+digraph VaultwardenPlasmidr {
     rankdir = LR;
     node [shape = box; style = filled; fontname = "Arial";];
     
@@ -21,9 +21,9 @@ digraph VaultwardenRotator {
         }
     }
     
-    // Rotato Application
+    // Plasmid Application
     subgraph cluster_app {
-        label = "Rotato (Internal)";
+        label = "Plasmid (Internal)";
         style = filled;
         color = "#e6f3ff";
         

@@ -21,9 +21,9 @@ digraph ControlSystem {
         // Summing Junctions
         Sum1 [label = "+";shape = circle;width = 0.4;fixedsize = true;style = filled;fillcolor = white;color = "#555555";];
         
-        // Controller (The Rotator)
+        // Controller (The Plasmidr)
         subgraph cluster_controller {
-            label = "Controller C(s)\n(Rotator Application)";
+            label = "Controller C(s)\n(Plasmidr Application)";
             style = filled;
             color = "#d4edda";
             fillcolor = "#d4edda";
