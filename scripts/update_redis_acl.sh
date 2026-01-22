@@ -10,14 +10,14 @@ if [ -z "$REDIS_SERVICE" ] || [ -z "$REDIS_NAMESPACE" ] || [ -z "$REDIS_ADMIN_SE
     exit 1
 fi
 
-if [ -z "$ROTATOR_KEY_USERNAME" ] || [ -z "$ROTATOR_KEY_PASSWORD" ]; then
-    echo "ERROR: Missing ROTATOR_KEY_* env vars (not running via plasmid?)"
+if [ -z "$PLASMIDR_KEY_USERNAME" ] || [ -z "$PLASMIDR_KEY_PASSWORD" ]; then
+    echo "ERROR: Missing PLASMIDR_KEY_* env vars (not running via plasmid?)"
     exit 1
 fi
 
-USERNAME="$ROTATOR_KEY_USERNAME"
+USERNAME="$PLASMIDR_KEY_USERNAME"
 # The new password to set
-NEW_PASSWORD="$ROTATOR_KEY_PASSWORD"
+NEW_PASSWORD="$PLASMIDR_KEY_PASSWORD"
 
 echo "[update_redis_acl] Fetching Redis Admin Password from Secret '$REDIS_ADMIN_SECRET'..."
 # Fetch the 'password' key from the admin secret

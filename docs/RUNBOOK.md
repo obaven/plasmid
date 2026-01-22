@@ -1,6 +1,6 @@
-# Vaultwarden Rotator Runbook
+# Vaultwarden Plasmidr Runbook
 
-This runbook documents the Standard Operating Procedures (SOPs) for managing the Decentralized Secret Rotator.
+This runbook documents the Standard Operating Procedures (SOPs) for managing the Decentralized Secret Plasmidr.
 
 ## 🧑‍💻 Flow 1: Onboarding a New Application
 

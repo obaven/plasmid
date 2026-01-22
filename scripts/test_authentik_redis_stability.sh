@@ -40,7 +40,7 @@ rotate_and_verify() {
     # Pre-check
     check_authentik_health || exit 1
     
-    log "Rotating Redis Credential using Rotator..."
+    log "Rotating Redis Credential using Plasmidr..."
     # Run rotation for the specific config that contains our secret.
     # Note: This rotates ALL secrets in that config.
     cd /home/jdean/gitops/apps/security/vaultwarden/rotation/plasmidr_helper

@@ -8,7 +8,7 @@ pub fn execute_hooks(hooks: &[crate::models::HookCommand], cwd: &str, dry_run: b
             println!("      [Dry Run] Would execute: {} {:?}", hook.command, hook.args);
             // In dry run, we might want to print the env vars we WOULD set
             for (k, _) in secret_data {
-                println!("      [Dry Run] Env: ROTATOR_KEY_{}=<REDACTED>", k.to_uppercase());
+                println!("      [Dry Run] Env: PLASMIDR_KEY_{}=<REDACTED>", k.to_uppercase());
             }
             continue;
         }
@@ -36,7 +36,7 @@ pub fn execute_hooks(hooks: &[crate::models::HookCommand], cwd: &str, dry_run: b
         
         // Inject secret values as environment variables
         for (key, value) in secret_data {
-            let env_key = format!("ROTATOR_KEY_{}", key.to_uppercase());
+            let env_key = format!("PLASMIDR_KEY_{}", key.to_uppercase());
             cmd.env(env_key, value);
         }
         

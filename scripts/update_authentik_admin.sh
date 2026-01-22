@@ -5,14 +5,14 @@
 set -e
 
 APP_NAMESPACE="${AUTHENTIK_NAMESPACE:-authentik-prod}"
-ADMIN_USERNAME="${ROTATOR_KEY_USERNAME:-admin}"
-ADMIN_PASSWORD="${ROTATOR_KEY_PASSWORD:?ROTATOR_KEY_PASSWORD required}"
+ADMIN_USERNAME="${PLASMIDR_KEY_USERNAME:-admin}"
+ADMIN_PASSWORD="${PLASMIDR_KEY_PASSWORD:?PLASMIDR_KEY_PASSWORD required}"
 CONFIG_SECRET="${AUTHENTIK_CONFIG_SECRET:-authentik-config-secrets}"
 REDIS_SECRET="${AUTHENTIK_REDIS_SECRET:-redis-authentik-user-credentials}"
 ADMIN_EMAIL="${AUTHENTIK_ADMIN_EMAIL:-admin@example.com}"
 
 if [ -z "$ADMIN_USERNAME" ]; then
-    echo "ERROR: Missing admin username (ROTATOR_KEY_USERNAME)."
+    echo "ERROR: Missing admin username (PLASMIDR_KEY_USERNAME)."
     exit 1
 fi
 

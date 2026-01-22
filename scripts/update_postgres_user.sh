@@ -10,13 +10,13 @@ if [ -z "$PG_NAMESPACE" ] || [ -z "$PG_ADMIN_SECRET" ]; then
     exit 1
 fi
 
-if [ -z "$ROTATOR_KEY_USERNAME" ] || [ -z "$ROTATOR_KEY_PASSWORD" ]; then
-    echo "ERROR: Missing ROTATOR_KEY_* env vars (not running via plasmid?)"
+if [ -z "$PLASMIDR_KEY_USERNAME" ] || [ -z "$PLASMIDR_KEY_PASSWORD" ]; then
+    echo "ERROR: Missing PLASMIDR_KEY_* env vars (not running via plasmid?)"
     exit 1
 fi
 
-USERNAME="$ROTATOR_KEY_USERNAME"
-NEW_PASSWORD="$ROTATOR_KEY_PASSWORD"
+USERNAME="$PLASMIDR_KEY_USERNAME"
+NEW_PASSWORD="$PLASMIDR_KEY_PASSWORD"
 PG_DATABASE="${PG_DATABASE:-postgres}"
 PG_HOST="${PG_HOST:-127.0.0.1}"
 PG_PORT="${PG_PORT:-5432}"

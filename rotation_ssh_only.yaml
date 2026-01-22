@@ -8,7 +8,7 @@ secrets:
     collections:
     - cicd
     folder: Cicd
-    notes: SSH key for Rotator Bot to push to Git
+    notes: SSH key for Plasmidr Bot to push to Git
   keys:
   - name: private_key
     type: static

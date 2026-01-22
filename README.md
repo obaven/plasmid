@@ -1,6 +1,6 @@
-# Vaultwarden Rotato Architecture
+# Vaultwarden Plasmid Architecture
 
-This directory contains the architectural design and implementation of the **Decentralized Vaultwarden Secret Rotator**.
+This directory contains the architectural design and implementation of the **Decentralized Vaultwarden Secret Plasmidr**.
 
 ## Architecture Diagram
 

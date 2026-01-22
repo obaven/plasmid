@@ -51,7 +51,7 @@ pub async fn get_org_key(
 ) -> Result<(VaultwardenClient, String, Vec<u8>, Vec<u8>)> { // Client, OrgId, OrgKey, UserKey
     
     let mut client = VaultwardenClient::new(base_url);
-    let debug_auth = std::env::var("ROTATOR_DEBUG_AUTH").is_ok();
+    let debug_auth = std::env::var("PLASMIDR_DEBUG_AUTH").is_ok();
 
     // 1. Prelogin
     println!("Fetching KDF info...");

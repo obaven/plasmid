@@ -5,8 +5,8 @@
 set -euo pipefail
 
 APP_NAMESPACE="${AUTHENTIK_NAMESPACE:-authentik-prod}"
-ADMIN_USERNAME="${ROTATOR_KEY_USERNAME:-admin}"
-ADMIN_PASSWORD="${ROTATOR_KEY_PASSWORD:?ROTATOR_KEY_PASSWORD required for validation}"
+ADMIN_USERNAME="${PLASMIDR_KEY_USERNAME:-admin}"
+ADMIN_PASSWORD="${PLASMIDR_KEY_PASSWORD:?PLASMIDR_KEY_PASSWORD required for validation}"
 
 echo "[validate_authentik_admin] Locating authentik server pod in namespace '$APP_NAMESPACE'..."
 SERVER_POD=$(kubectl get pod -n "$APP_NAMESPACE" -l app.kubernetes.io/component=server -o jsonpath='{.items[0].metadata.name}')

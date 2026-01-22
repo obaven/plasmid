@@ -4,9 +4,9 @@ set -e
 # Configuration
 REPO_URL="${GIT_REPO_URL:-git@github.com:obaven/gitops.git}"
 GIT_EMAIL="${GIT_EMAIL:-plasmidr-bot@obaven.com}"
-GIT_NAME="${GIT_NAME:-Rotator Bot}"
+GIT_NAME="${GIT_NAME:-Plasmidr Bot}"
 
-echo "Starting Rotator Bot..."
+echo "Starting Plasmidr Bot..."
 
 # 1. Setup SSH
 mkdir -p ~/.ssh
@@ -27,7 +27,7 @@ echo "Cloning repository..."
 git clone "$REPO_URL" /app/repo
 cd /app/repo
 
-# 4. Run Rotator
+# 4. Run Plasmidr
 echo "Running rotation..."
 plasmid rotate --scan
 

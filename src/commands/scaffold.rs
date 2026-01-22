@@ -39,7 +39,7 @@ pub async fn run(args: ScaffoldArgs) -> Result<()> {
             collection_ids: None,
             collections: Some(vec!["infrastructure-team".to_string()]),
             folder: None, // Optional
-            notes: Some(format!("Rotated by GitOps Rotator for {}", app_name)),
+            notes: Some(format!("Rotated by GitOps Plasmidr for {}", app_name)),
             fields: None,
         },
         kubernetes: KubernetesTarget {
