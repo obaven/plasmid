@@ -144,7 +144,9 @@ async fn test_real_rotation_flow() -> Result<()> {
                         namespace: "test-secret".into(),
                         secret_name: "e2e-result".into(),
                         path: "apps/test/sealed.yaml".into(),
+                        labels: None,
                     },
+                    additional_kubernetes: None,
                     keys: vec![
                         KeyDefinition { name: "password".into(), key_type: KeyType::Random, length: Some(20), ..Default::default() },
                         KeyDefinition { name: "username".into(), key_type: KeyType::Static, value: Some("e2e-user".into()), ..Default::default() }
@@ -154,7 +156,8 @@ async fn test_real_rotation_flow() -> Result<()> {
                     access_users: None,
                     authentik: None,
                 }
-            ]
+            ],
+            users: vec![],
         };
         
         // 6. Setup: Create encrypted item
@@ -186,6 +189,7 @@ async fn test_real_rotation_flow() -> Result<()> {
             debug_api: true,
             debug_crypto: false,
             debug_auth: false,
+            secret: None,
         };
         
         // We need git root for "kubeseal" context

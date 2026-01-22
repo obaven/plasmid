@@ -60,7 +60,10 @@ secrets:
                        namespace: "ns".to_string(),
                        secret_name: "sec".to_string(),
                        path: "path".to_string(),
+                       labels: None,
                    },
+                   additional_kubernetes: None,
+                   authentik: None,
                    keys: vec![
                        KeyDefinition {
                            name: "key1".to_string(),
@@ -74,9 +77,9 @@ secrets:
                    policy: None,
                    hooks: None,
                    access_users: None,
-                   authentik: None,
                }
-           ]
+           ],
+           users: vec![],
        };
        
        let yaml = serde_yaml::to_string(&manifest).expect("Failed to serialize");
